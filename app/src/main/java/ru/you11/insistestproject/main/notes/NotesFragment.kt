@@ -8,12 +8,14 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import ru.you11.insistestproject.R
+import ru.you11.insistestproject.models.Note
 
-class NotesFragment : Fragment() {
+class NotesFragment : Fragment(), OnNoteClickListener {
 
     private lateinit var viewModel: NotesViewModel
 
@@ -29,11 +31,11 @@ class NotesFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_notes, container, false)
         with(view) {
             findViewById<FloatingActionButton>(R.id.notes_add_button).setOnClickListener {
-                moveToAddNoteFragment(findNavController())
+                moveToAddNoteFragment()
             }
 
             notesRV = findViewById(R.id.notes_rv)
-            notesRV.adapter = NotesRVAdapter(viewModel.getInitialNotes())
+            notesRV.adapter = NotesRVAdapter(viewModel.getInitialNotes(), this@NotesFragment)
             notesRV.layoutManager = LinearLayoutManager(activity)
         }
 
@@ -42,7 +44,12 @@ class NotesFragment : Fragment() {
 
     private fun createViewModel() = ViewModelProviders.of(this).get(NotesViewModel::class.java)
 
-    private fun moveToAddNoteFragment(controller: NavController) {
-        controller.navigate(R.id.action_notesFragment_to_addNoteFragment)
+    private fun moveToAddNoteFragment() {
+        findNavController().navigate(R.id.action_notesFragment_to_addNoteFragment)
+    }
+
+    override fun onClick(item: Note) {
+        val action = NotesFragmentDirections.actionNotesFragmentToSingleNoteFragment(note = item)
+        findNavController().navigate(action)
     }
 }

@@ -1,7 +1,11 @@
 package ru.you11.insistestproject.models
 
-data class Note(
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
+class Note(
     val name: String,
     val description: String,
     val color: Color = Color.WHITE
-)
+): Parcelable

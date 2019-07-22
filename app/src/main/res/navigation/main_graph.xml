@@ -17,18 +17,27 @@
 
         <action
             android:id="@+id/action_notesFragment_to_singleNoteFragment"
-            app:destination="@id/singleNoteFragment" />
+            app:destination="@+id/singleNoteFragment"
+            app:popUpToInclusive="false">
+        </action>
     </fragment>
 
     <fragment
         android:id="@+id/addNoteFragment"
         android:name="ru.you11.insistestproject.main.addnote.AddNoteFragment"
         android:label="AddNoteFragment"
-        tools:layout="@layout/fragment_add_note"/>
+        tools:layout="@layout/fragment_add_note" />
 
     <fragment
         android:id="@+id/singleNoteFragment"
         android:name="ru.you11.insistestproject.main.singlenote.SingleNoteFragment"
         android:label="SingleNoteFragment"
-        tools:layout="@layout/fragment_single_note"/>
+        tools:layout="@layout/fragment_single_note" >
+
+        <argument
+            android:name="note"
+            app:argType="ru.you11.insistestproject.models.Note"
+            app:nullable="true"
+            android:defaultValue="@null"/>
+    </fragment>
 </navigation>
