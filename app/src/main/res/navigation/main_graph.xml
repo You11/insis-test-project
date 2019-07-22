@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/notesFragment"
-        android:name="ru.you11.insistestproject.main.fragments.NotesFragment"
+        android:name="ru.you11.insistestproject.main.notes.NotesFragment"
         android:label="NotesFragment"
         tools:layout="@layout/fragment_notes">
 
@@ -22,13 +22,13 @@
 
     <fragment
         android:id="@+id/addNoteFragment"
-        android:name="ru.you11.insistestproject.main.fragments.AddNoteFragment"
+        android:name="ru.you11.insistestproject.main.addnote.AddNoteFragment"
         android:label="AddNoteFragment"
         tools:layout="@layout/fragment_add_note"/>
 
     <fragment
         android:id="@+id/singleNoteFragment"
-        android:name="ru.you11.insistestproject.main.fragments.SingleNoteFragment"
+        android:name="ru.you11.insistestproject.main.singlenote.SingleNoteFragment"
         android:label="SingleNoteFragment"
         tools:layout="@layout/fragment_single_note"/>
 </navigation>
