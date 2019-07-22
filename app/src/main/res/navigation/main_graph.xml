@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_graph"
+    app:startDestination="@id/notesFragment">
+
+    <fragment
+        android:id="@+id/notesFragment"
+        android:name="ru.you11.insistestproject.main.fragments.NotesFragment"
+        android:label="NotesFragment"
+        tools:layout="@layout/fragment_notes">
+
+        <action
+            android:id="@+id/action_notesFragment_to_addNoteFragment"
+            app:destination="@id/addNoteFragment" />
+
+        <action
+            android:id="@+id/action_notesFragment_to_singleNoteFragment"
+            app:destination="@id/singleNoteFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/addNoteFragment"
+        android:name="ru.you11.insistestproject.main.fragments.AddNoteFragment"
+        android:label="AddNoteFragment"
+        tools:layout="@layout/fragment_add_note"/>
+
+    <fragment
+        android:id="@+id/singleNoteFragment"
+        android:name="ru.you11.insistestproject.main.fragments.SingleNoteFragment"
+        android:label="SingleNoteFragment"
+        tools:layout="@layout/fragment_single_note"/>
+</navigation>
