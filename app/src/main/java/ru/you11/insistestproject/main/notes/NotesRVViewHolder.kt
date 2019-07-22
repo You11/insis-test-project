@@ -9,7 +9,7 @@ import ru.you11.insistestproject.models.Note
 
 class NotesRVViewHolder(view: View): RecyclerView.ViewHolder(view) {
 
-    private val layout: TextView = view.findViewById(R.id.note_layout)
+    private val layout: View = view.findViewById(R.id.note_layout)
     private val title: TextView = view.findViewById(R.id.note_title)
     private val description: TextView = view.findViewById(R.id.note_description)
 
