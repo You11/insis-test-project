@@ -6,16 +6,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
-import androidx.navigation.NavController
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import ru.you11.insistestproject.R
 import ru.you11.insistestproject.models.Note
+import ru.you11.insistestproject.other.Consts
+import ru.you11.insistestproject.other.NavigationResult
 
-class NotesFragment : Fragment(), OnNoteClickListener {
+class NotesFragment : Fragment(), OnNoteClickListener, NavigationResult {
 
     private lateinit var viewModel: NotesViewModel
 
@@ -51,5 +51,19 @@ class NotesFragment : Fragment(), OnNoteClickListener {
     override fun onClick(item: Note) {
         val action = NotesFragmentDirections.actionNotesFragmentToSingleNoteFragment(note = item)
         findNavController().navigate(action)
+    }
+
+    override fun onNavigationResult(result: Bundle, resultCode: Int) {
+        when (resultCode) {
+            Consts.ResultCodes.ADD_NOTE -> {
+                val note = result["note"]
+            }
+
+            Consts.ResultCodes.EDIT_NOTE -> {
+
+            }
+
+            else -> return
+        }
     }
 }

@@ -11,6 +11,9 @@
         android:label="NotesFragment"
         tools:layout="@layout/fragment_notes">
 
+        <argument android:name="callback"
+            app:argType="ru.you11.insistestproject.other.NavigationResult"/>
+
         <action
             android:id="@+id/action_notesFragment_to_addNoteFragment"
             app:destination="@id/addNoteFragment" />
@@ -26,7 +29,11 @@
         android:id="@+id/addNoteFragment"
         android:name="ru.you11.insistestproject.main.addnote.AddNoteFragment"
         android:label="AddNoteFragment"
-        tools:layout="@layout/fragment_add_note" />
+        tools:layout="@layout/fragment_add_note" >
+        <action
+            android:id="@+id/action_addNoteFragment_to_notesFragment"
+            app:destination="@id/notesFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/singleNoteFragment"
