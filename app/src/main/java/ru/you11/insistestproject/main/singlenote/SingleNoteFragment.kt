@@ -7,13 +7,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavArgs
 import androidx.navigation.fragment.navArgs
 import ru.you11.insistestproject.R
+import ru.you11.insistestproject.main.BaseFragment
 
-class SingleNoteFragment: Fragment() {
+class SingleNoteFragment: BaseFragment<SingleNoteViewModel>() {
 
     private val args: SingleNoteFragmentArgs by navArgs()
+
+    override fun createViewModel() = ViewModelProviders.of(this).get(SingleNoteViewModel::class.java)
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 

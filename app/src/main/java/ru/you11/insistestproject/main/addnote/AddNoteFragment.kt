@@ -4,13 +4,15 @@ import android.os.Bundle
 import android.view.*
 import android.widget.EditText
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import ru.you11.insistestproject.R
+import ru.you11.insistestproject.main.BaseFragment
 import ru.you11.insistestproject.main.MainActivity
 import ru.you11.insistestproject.models.Note
 import ru.you11.insistestproject.other.Consts
 
-class AddNoteFragment: Fragment() {
+class AddNoteFragment : BaseFragment<AddNoteViewModel>() {
 
     private lateinit var noteTitle: EditText
     private lateinit var noteDescription: EditText
@@ -19,6 +21,8 @@ class AddNoteFragment: Fragment() {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
     }
+
+    override fun createViewModel() = ViewModelProviders.of(this).get(AddNoteViewModel::class.java)
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 

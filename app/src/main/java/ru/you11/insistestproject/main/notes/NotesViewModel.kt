@@ -10,7 +10,7 @@ class NotesViewModel: ViewModel() {
 
     val notes = MutableLiveData<ArrayList<Note>>()
 
-    fun getInitialNotes() {
+    fun setInitialNotes() {
         val list = ArrayList<Note>()
         list.add(Note(id = 0, name = "Meow", description = "Meowmeowmeowmeow meowmeowmeowmeowmeowmeow. Meowmeowmeowmeowmeowmeow", color = Color.YELLOW))
         list.add(Note(id = 1, name = "Gav", description = "Gavgavgavgavgavgavgavgavgav gavgavgav"))
@@ -27,6 +27,8 @@ class NotesViewModel: ViewModel() {
 
         notes.postValue(list)
     }
+
+    fun getNotes(): ArrayList<Note>? = notes.value
 
     fun addNewNote(title: String, description: String) {
         val newNote = Note(id = getNewId(),
@@ -45,6 +47,4 @@ class NotesViewModel: ViewModel() {
         val latestId = notes[notes.size - 1].id
         return latestId + 1
     }
-
-    private fun getNotes(): ArrayList<Note>? = notes.value
 }

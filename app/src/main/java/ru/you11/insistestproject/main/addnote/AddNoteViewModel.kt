@@ -1,4 +1,6 @@
 package ru.you11.insistestproject.main.addnote
 
-class AddNoteViewModel {
+import androidx.lifecycle.ViewModel
+
+class AddNoteViewModel: ViewModel() {
 }

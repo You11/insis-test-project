@@ -12,20 +12,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import ru.you11.insistestproject.R
+import ru.you11.insistestproject.main.BaseFragment
 import ru.you11.insistestproject.models.Note
 import ru.you11.insistestproject.other.Consts
 import ru.you11.insistestproject.other.NavigationResult
 
-class NotesFragment : Fragment(), OnNoteClickListener, NavigationResult {
-
-    private lateinit var viewModel: NotesViewModel
+class NotesFragment : BaseFragment<NotesViewModel>(), OnNoteClickListener, NavigationResult {
 
     private lateinit var notesRV: RecyclerView
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        viewModel = createViewModel()
-    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
@@ -43,7 +37,7 @@ class NotesFragment : Fragment(), OnNoteClickListener, NavigationResult {
         return view
     }
 
-    private fun createViewModel() = ViewModelProviders.of(this).get(NotesViewModel::class.java)
+    override fun createViewModel() = ViewModelProviders.of(this).get(NotesViewModel::class.java)
 
     override fun onResume() {
         super.onResume()
@@ -52,7 +46,7 @@ class NotesFragment : Fragment(), OnNoteClickListener, NavigationResult {
             (notesRV.adapter as NotesRVAdapter).updateAllNotes(it)
         })
 
-        viewModel.getInitialNotes()
+        if (viewModel.getNotes().isNullOrEmpty()) viewModel.setInitialNotes()
     }
 
     private fun moveToAddNoteFragment() {
