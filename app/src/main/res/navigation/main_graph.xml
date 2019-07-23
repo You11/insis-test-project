@@ -20,8 +20,7 @@
 
         <action
             android:id="@+id/action_notesFragment_to_singleNoteFragment"
-            app:destination="@+id/singleNoteFragment"
-            app:popUpToInclusive="false">
+            app:destination="@+id/singleNoteFragment">
         </action>
     </fragment>
 
@@ -30,6 +29,12 @@
         android:name="ru.you11.insistestproject.main.addnote.AddNoteFragment"
         android:label="AddNoteFragment"
         tools:layout="@layout/fragment_add_note" >
+
+        <argument
+            android:name="note"
+            app:argType="ru.you11.insistestproject.models.Note"
+            app:nullable="true"
+            android:defaultValue="@null"/>
         <action
             android:id="@+id/action_addNoteFragment_to_notesFragment"
             app:destination="@id/notesFragment" />
@@ -46,5 +51,9 @@
             app:argType="ru.you11.insistestproject.models.Note"
             app:nullable="true"
             android:defaultValue="@null"/>
+        <action
+            android:id="@+id/action_singleNoteFragment_to_addNoteFragment"
+            app:destination="@id/addNoteFragment"
+            app:popUpTo="@id/notesFragment"/>
     </fragment>
 </navigation>

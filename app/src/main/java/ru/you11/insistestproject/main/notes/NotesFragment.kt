@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
@@ -42,7 +41,7 @@ class NotesFragment : BaseFragment<NotesViewModel>(), OnNoteClickListener, Navig
     override fun onResume() {
         super.onResume()
 
-        viewModel.notes.observe(this, Observer {
+        viewModel.notesData.observe(this, Observer {
             (notesRV.adapter as NotesRVAdapter).updateAllNotes(it)
         })
 
@@ -68,15 +67,10 @@ class NotesFragment : BaseFragment<NotesViewModel>(), OnNoteClickListener, Navig
             }
 
             Consts.ResultCodes.EDIT_NOTE -> {
-
+                viewModel.changeNote(result.getParcelable("note"))
             }
 
             else -> return
         }
-    }
-
-    private fun generateNewId(): Int {
-
-        return 0
     }
 }

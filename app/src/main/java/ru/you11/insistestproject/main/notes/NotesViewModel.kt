@@ -1,6 +1,5 @@
 package ru.you11.insistestproject.main.notes
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import ru.you11.insistestproject.models.Color
@@ -8,7 +7,7 @@ import ru.you11.insistestproject.models.Note
 
 class NotesViewModel: ViewModel() {
 
-    val notes = MutableLiveData<ArrayList<Note>>()
+    val notesData = MutableLiveData<ArrayList<Note>>()
 
     fun setInitialNotes() {
         val list = ArrayList<Note>()
@@ -25,10 +24,10 @@ class NotesViewModel: ViewModel() {
 
         list.sortBy { it.id }
 
-        notes.postValue(list)
+        notesData.postValue(list)
     }
 
-    fun getNotes(): ArrayList<Note>? = notes.value
+    fun getNotes(): ArrayList<Note>? = notesData.value
 
     fun addNewNote(title: String, description: String) {
         val newNote = Note(id = getNewId(),
@@ -38,8 +37,17 @@ class NotesViewModel: ViewModel() {
         val newNotes = getNotes()
         newNotes?.add(newNote)
 
-        notes.postValue(newNotes)
+        notesData.postValue(newNotes)
+    }
 
+    fun changeNote(newNote: Note) {
+        val notes = getNotes() ?: return
+        val oldNote = notes.find { newNote.id == it.id }
+        val notePosition = notes.indexOf(oldNote)
+        notes.remove(oldNote)
+        notes.add(notePosition, newNote)
+
+        notesData.postValue(notes)
     }
 
     private fun getNewId(): Int {
