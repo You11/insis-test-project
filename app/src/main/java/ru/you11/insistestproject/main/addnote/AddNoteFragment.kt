@@ -45,11 +45,9 @@ class AddNoteFragment: Fragment() {
     }
 
     private fun saveNote() {
-        val note = Note(name = noteTitle.text.toString(),
-            description = noteDescription.text.toString())
-
         val bundle = Bundle()
-        bundle.putParcelable("note", note)
+        bundle.putString("noteTitle", noteTitle.text.toString())
+        bundle.putString("noteDescription", noteDescription.text.toString())
 
         (activity as MainActivity).navigateBackWithResult(bundle, Consts.ResultCodes.ADD_NOTE)
     }

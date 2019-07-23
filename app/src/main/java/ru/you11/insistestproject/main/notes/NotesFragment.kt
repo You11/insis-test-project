@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -35,7 +36,7 @@ class NotesFragment : Fragment(), OnNoteClickListener, NavigationResult {
             }
 
             notesRV = findViewById(R.id.notes_rv)
-            notesRV.adapter = NotesRVAdapter(viewModel.getInitialNotes(), this@NotesFragment)
+            notesRV.adapter = NotesRVAdapter(this@NotesFragment)
             notesRV.layoutManager = LinearLayoutManager(activity)
         }
 
@@ -43,6 +44,16 @@ class NotesFragment : Fragment(), OnNoteClickListener, NavigationResult {
     }
 
     private fun createViewModel() = ViewModelProviders.of(this).get(NotesViewModel::class.java)
+
+    override fun onResume() {
+        super.onResume()
+
+        viewModel.notes.observe(this, Observer {
+            (notesRV.adapter as NotesRVAdapter).updateAllNotes(it)
+        })
+
+        viewModel.getInitialNotes()
+    }
 
     private fun moveToAddNoteFragment() {
         findNavController().navigate(R.id.action_notesFragment_to_addNoteFragment)
@@ -56,7 +67,10 @@ class NotesFragment : Fragment(), OnNoteClickListener, NavigationResult {
     override fun onNavigationResult(result: Bundle, resultCode: Int) {
         when (resultCode) {
             Consts.ResultCodes.ADD_NOTE -> {
-                val note = result["note"]
+                viewModel.addNewNote(
+                    title = result.getString("noteTitle") ?: "",
+                    description = result.getString("noteDescription") ?: ""
+                )
             }
 
             Consts.ResultCodes.EDIT_NOTE -> {
@@ -65,5 +79,10 @@ class NotesFragment : Fragment(), OnNoteClickListener, NavigationResult {
 
             else -> return
         }
+    }
+
+    private fun generateNewId(): Int {
+
+        return 0
     }
 }
