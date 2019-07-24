@@ -1,10 +1,12 @@
 package ru.you11.insistestproject.main.addnote
 
+import android.app.Activity
 import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
 import android.graphics.drawable.ShapeDrawable
 import android.os.Bundle
 import android.view.*
+import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -30,7 +32,7 @@ class AddNoteFragment : BaseFragment<AddNoteViewModel>() {
         setHasOptionsMenu(true)
     }
 
-    override fun createViewModel() = ViewModelProviders.of(activity!!).get(AddNoteViewModel::class.java)
+    override fun createViewModel() = ViewModelProviders.of(this).get(AddNoteViewModel::class.java)
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val root = inflater.inflate(R.layout.fragment_add_note, container, false)
@@ -124,6 +126,8 @@ class AddNoteFragment : BaseFragment<AddNoteViewModel>() {
             return false
         }
 
+        hideKeyboard()
+
         if (!viewModel.isDescriptionInputValid(descriptionInput)) {
             showValidationError(noteDescription)
             return false
@@ -137,6 +141,11 @@ class AddNoteFragment : BaseFragment<AddNoteViewModel>() {
 
         view.requestFocus()
         view.error = invalidInputString
+    }
+
+    private fun hideKeyboard() {
+        val imm = activity?.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(view?.windowToken, 0)
     }
 
     private fun setResultData(bundle: Bundle): Int {
