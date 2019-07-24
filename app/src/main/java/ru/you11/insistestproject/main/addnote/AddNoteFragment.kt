@@ -26,7 +26,6 @@ class AddNoteFragment : BaseFragment<AddNoteViewModel>() {
     override fun createViewModel() = ViewModelProviders.of(this).get(AddNoteViewModel::class.java)
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-
         val view = inflater.inflate(R.layout.fragment_add_note, container, false)
         with(view) {
             noteTitle = findViewById(R.id.add_note_title_edit)
@@ -58,26 +57,56 @@ class AddNoteFragment : BaseFragment<AddNoteViewModel>() {
     }
 
     private fun saveNote() {
+        if (!isAllInputValid()) return
 
         val bundle = Bundle()
+        val resultCode = setResultData(bundle)
+
+        (activity as MainActivity).navigateBackWithResult(bundle, resultCode)
+    }
+
+    private fun isAllInputValid(): Boolean {
+        val titleInput = noteTitle.text.toString()
+        val descriptionInput = noteDescription.text.toString()
+
+        if (!viewModel.isTitleInputValid(titleInput)) {
+            showValidationError(noteTitle)
+            return false
+        }
+
+        if (!viewModel.isDescriptionInputValid(descriptionInput)) {
+            showValidationError(noteDescription)
+            return false
+        }
+
+        return true
+    }
+
+    private fun showValidationError(view: EditText) {
+        val invalidInputString = resources.getString(R.string.invalid_input)
+
+        view.requestFocus()
+        view.error = invalidInputString
+    }
+
+    private fun setResultData(bundle: Bundle): Int {
+        val titleInput = noteTitle.text.toString()
+        val descriptionInput = noteDescription.text.toString()
 
         val note = args.note
-
-        val resultCode: Int
-
-        resultCode = if (note == null) {
-            bundle.putString("noteTitle", noteTitle.text.toString())
-            bundle.putString("noteDescription", noteDescription.text.toString())
+        return if (note == null) {
+            bundle.putString("noteTitle", titleInput)
+            bundle.putString("noteDescription", descriptionInput)
             Consts.ResultCodes.ADD_NOTE
         } else {
-            val newNote = Note(id = note.id,
-                name = noteTitle.text.toString(),
-                description = noteDescription.text.toString(),
-                color = note.color)
+            val newNote = Note(
+                id = note.id,
+                name = titleInput,
+                description = descriptionInput,
+                color = note.color
+            )
             bundle.putParcelable("note", newNote)
             Consts.ResultCodes.EDIT_NOTE
         }
-
-        (activity as MainActivity).navigateBackWithResult(bundle, resultCode)
     }
 }
