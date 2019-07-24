@@ -2,6 +2,7 @@ package ru.you11.insistestproject.main.notes
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.google.gson.Gson
 import ru.you11.insistestproject.models.Color
 import ru.you11.insistestproject.models.Note
 
@@ -9,22 +10,9 @@ class NotesViewModel: ViewModel() {
 
     val notesData = MutableLiveData<ArrayList<Note>>()
 
-    fun setInitialNotes() {
-        val list = ArrayList<Note>()
-        list.add(Note(id = 0, name = "Meow", description = "Meowmeowmeowmeow meowmeowmeowmeowmeowmeow. Meowmeowmeowmeowmeowmeow", color = Color.YELLOW))
-        list.add(Note(id = 1, name = "Gav", description = "Gavgavgavgavgavgavgavgavgav gavgavgav"))
-        list.add(Note(id = 2, name = "Normal note", description = "It's really not", color = Color.LIGHT_BLUE))
-        list.add(Note(id = 3, name = "Meow", description = "Meowmeowmeowmeow meowmeowmeowmeowmeowmeow. Meowmeowmeowmeowmeowmeow", color = Color.YELLOW))
-        list.add(Note(id = 4, name = "Gav", description = "Gavgavgavgavgavgavgavgavgav gavgavgav"))
-        list.add(Note(id = 5, name = "Normal note", description = "It's really not", color = Color.LIGHT_BLUE))
-        list.add(Note(id = 6, name = "Meow", description = "Meowmeowmeowmeow meowmeowmeowmeowmeowmeow. Meowmeowmeowmeowmeowmeow", color = Color.YELLOW))
-        list.add(Note(id = 7, name = "Gav", description = "Gavgavgavgavgavgavgavgavgav gavgavgav"))
-        list.add(Note(id = 8, name = "Normal note", description = "It's really not", color = Color.LIGHT_BLUE))
-        list.add(Note(id = 9, name = "Meow", description = "Meowmeowmeowmeow meowmeowmeowmeowmeowmeow. Meowmeowmeowmeowmeowmeow", color = Color.YELLOW))
-
-        list.sortBy { it.id }
-
-        notesData.postValue(list)
+    fun setInitialNotes(data: ArrayList<Note>) {
+        data.sortBy { it.id }
+        notesData.postValue(data)
     }
 
     fun getNotes(): ArrayList<Note>? = notesData.value

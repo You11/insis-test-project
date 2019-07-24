@@ -1,5 +1,6 @@
 package ru.you11.insistestproject.main.notes
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +15,7 @@ import ru.you11.insistestproject.R
 import ru.you11.insistestproject.main.BaseFragment
 import ru.you11.insistestproject.models.Note
 import ru.you11.insistestproject.other.Consts
+import ru.you11.insistestproject.other.JsonNoteGetter
 import ru.you11.insistestproject.other.NavigationResult
 
 class NotesFragment : BaseFragment<NotesViewModel>(), OnNoteClickListener, NavigationResult {
@@ -45,7 +47,11 @@ class NotesFragment : BaseFragment<NotesViewModel>(), OnNoteClickListener, Navig
             (notesRV.adapter as NotesRVAdapter).updateAllNotes(it)
         })
 
-        if (viewModel.getNotes().isNullOrEmpty()) viewModel.setInitialNotes()
+        if (viewModel.getNotes().isNullOrEmpty()) {
+            val jsonFileGetter = JsonNoteGetter(activity as Context)
+            val data = jsonFileGetter.getJSONArrayListFromFile("data.json")
+            viewModel.setInitialNotes(data)
+        }
     }
 
     private fun moveToAddNoteFragment() {
