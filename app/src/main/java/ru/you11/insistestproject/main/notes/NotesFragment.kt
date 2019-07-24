@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import ru.you11.insistestproject.R
 import ru.you11.insistestproject.main.BaseFragment
+import ru.you11.insistestproject.models.CardColor
 import ru.you11.insistestproject.models.Note
 import ru.you11.insistestproject.other.Consts
 import ru.you11.insistestproject.other.JsonNoteGetter
@@ -68,7 +69,8 @@ class NotesFragment : BaseFragment<NotesViewModel>(), OnNoteClickListener, Navig
             Consts.ResultCodes.ADD_NOTE -> {
                 viewModel.addNewNote(
                     title = result.getString("noteTitle") ?: "",
-                    description = result.getString("noteDescription") ?: ""
+                    description = result.getString("noteDescription") ?: "",
+                    color = result.get("noteColor") as CardColor? ?: CardColor.WHITE
                 )
             }
 

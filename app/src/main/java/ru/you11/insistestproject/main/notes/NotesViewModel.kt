@@ -2,8 +2,7 @@ package ru.you11.insistestproject.main.notes
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.google.gson.Gson
-import ru.you11.insistestproject.models.Color
+import ru.you11.insistestproject.models.CardColor
 import ru.you11.insistestproject.models.Note
 
 class NotesViewModel: ViewModel() {
@@ -17,10 +16,11 @@ class NotesViewModel: ViewModel() {
 
     fun getNotes(): ArrayList<Note>? = notesData.value
 
-    fun addNewNote(title: String, description: String) {
+    fun addNewNote(title: String, description: String, color: CardColor) {
         val newNote = Note(id = getNewId(),
             name = title,
-            description = description)
+            description = description,
+            color = color)
 
         val newNotes = getNotes()
         newNotes?.add(newNote)

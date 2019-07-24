@@ -13,5 +13,5 @@ data class Note(
     @SerializedName("description")
     val description: String,
     @SerializedName("color")
-    val color: Color = Color.WHITE
+    val color: CardColor = CardColor.WHITE
 ): Parcelable

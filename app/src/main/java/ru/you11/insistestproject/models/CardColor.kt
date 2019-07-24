@@ -1,6 +1,6 @@
 package ru.you11.insistestproject.models
 
-enum class Color(val hex: String) {
+enum class CardColor(val hex: String) {
     WHITE("#ffffff"),
     RED("#ef9a9a"),
     ORANGE("#ffcc80"),
