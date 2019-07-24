@@ -1,15 +1,15 @@
 [
     {
         "color": "YELLOW",
-        "description": "Meowmeowmeowmeow meowmeowmeowmeowmeowmeow. Meowmeowmeowmeowmeowmeow",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Dolor sed viverra ipsum nunc aliquet bibendum enim. In massa tempor nec feugiat. Nunc aliquet bibendum enim facilisis gravida. Nisl nunc mi ipsum faucibus vitae aliquet nec ullamcorper. Amet luctus venenatis lectus magna fringilla. Volutpat maecenas volutpat blandit aliquam etiam erat velit scelerisque in. Egestas egestas fringilla phasellus faucibus scelerisque eleifend. Sagittis orci a scelerisque purus semper eget duis. Nulla pharetra diam sit amet nisl suscipit. Sed adipiscing diam donec adipiscing tristique risus nec feugiat in. Fusce ut placerat orci nulla. Pharetra vel turpis nunc eget lorem dolor. Tristique senectus et netus et malesuada.",
         "id": 0,
-        "name": "Meow"
+        "name": "Cook something"
     },
     {
         "color": "WHITE",
-        "description": "Gavgavgavgavgavgavgavgavgav gavgavgav",
+        "description": "It's really fluffy",
         "id": 1,
-        "name": "Gav"
+        "name": "Pet cat"
     },
     {
         "color": "LIGHT_BLUE",
@@ -18,45 +18,45 @@
         "name": "Normal note"
     },
     {
-        "color": "YELLOW",
-        "description": "Meowmeowmeowmeow meowmeowmeowmeowmeowmeow. Meowmeowmeowmeowmeowmeow",
+        "color": "BLUE",
+        "description": "Pretty long and cool description",
         "id": 3,
-        "name": "Meow"
+        "name": "Another note"
     },
     {
         "color": "WHITE",
-        "description": "Gavgavgavgavgavgavgavgavgav gavgavgav",
+        "description": "Fifth note description",
         "id": 4,
-        "name": "Gav"
+        "name": "Fifth note"
     },
     {
         "color": "LIGHT_BLUE",
-        "description": "It\u0027s really not",
+        "description": "И её замечательное описание",
         "id": 5,
-        "name": "Normal note"
+        "name": "Внезапно записка на русском"
     },
     {
-        "color": "YELLOW",
-        "description": "Meowmeowmeowmeow meowmeowmeowmeowmeowmeow. Meowmeowmeowmeowmeowmeow",
+        "color": "RED",
+        "description": "It bites, ouch",
         "id": 6,
-        "name": "Meow"
+        "name": "Pet cat again"
     },
     {
-        "color": "WHITE",
-        "description": "Gavgavgavgavgavgavgavgavgav gavgavgav",
+        "color": "PURPLE",
+        "description": "Cool dog, cool description, much wow",
         "id": 7,
-        "name": "Gav"
+        "name": "Pet dog now"
     },
     {
-        "color": "LIGHT_BLUE",
-        "description": "It\u0027s really not",
+        "color": "GREEN",
+        "description": "Description of description",
         "id": 8,
-        "name": "Normal note"
+        "name": "Some name"
     },
     {
         "color": "YELLOW",
-        "description": "Meowmeowmeowmeow meowmeowmeowmeowmeowmeow. Meowmeowmeowmeowmeowmeow",
+        "description": "Finally",
         "id": 9,
-        "name": "Meow"
+        "name": "Last note"
     }
 ]
