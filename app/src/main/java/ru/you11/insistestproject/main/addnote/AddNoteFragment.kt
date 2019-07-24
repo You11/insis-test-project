@@ -30,7 +30,7 @@ class AddNoteFragment : BaseFragment<AddNoteViewModel>() {
         setHasOptionsMenu(true)
     }
 
-    override fun createViewModel() = ViewModelProviders.of(this).get(AddNoteViewModel::class.java)
+    override fun createViewModel() = ViewModelProviders.of(activity!!).get(AddNoteViewModel::class.java)
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val root = inflater.inflate(R.layout.fragment_add_note, container, false)
@@ -44,6 +44,18 @@ class AddNoteFragment : BaseFragment<AddNoteViewModel>() {
         }
 
         return root
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+
+        outState.putString("color", viewModel.getCardColor())
+    }
+
+    override fun onViewStateRestored(savedInstanceState: Bundle?) {
+        super.onViewStateRestored(savedInstanceState)
+
+        viewModel.setCardColor(savedInstanceState?.getString("color") ?: args.note?.color?.hex ?: CardColor.WHITE.hex)
     }
 
     override fun onResume() {
