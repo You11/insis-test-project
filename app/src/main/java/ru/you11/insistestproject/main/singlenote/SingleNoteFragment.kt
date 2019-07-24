@@ -4,6 +4,7 @@ import android.graphics.Color
 import android.os.Bundle
 import android.view.*
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavArgs
@@ -35,8 +36,8 @@ class SingleNoteFragment: BaseFragment<SingleNoteViewModel>() {
                 text = args.note?.description
             }
 
-            findViewById<View>(R.id.single_note_layout).apply {
-                setBackgroundColor(Color.parseColor(args.note?.color?.hex))
+            findViewById<CardView>(R.id.single_note_card).apply {
+                setViewBackgroundColor(this)
             }
         }
 
@@ -54,6 +55,15 @@ class SingleNoteFragment: BaseFragment<SingleNoteViewModel>() {
         }
 
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun setViewBackgroundColor(view: View) {
+        val color = Color.parseColor(args.note?.color?.hex)
+        if (view is CardView) {
+            view.setCardBackgroundColor(color)
+        } else {
+            view.setBackgroundColor(color)
+        }
     }
 
     private fun navigateToEditScreen() {

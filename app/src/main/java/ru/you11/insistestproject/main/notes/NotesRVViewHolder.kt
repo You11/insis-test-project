@@ -3,13 +3,14 @@ package ru.you11.insistestproject.main.notes
 import android.graphics.Color
 import android.view.View
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import ru.you11.insistestproject.R
 import ru.you11.insistestproject.models.Note
 
 class NotesRVViewHolder(view: View, listener: OnNoteClickListener): RecyclerView.ViewHolder(view) {
 
-    private val layout: View = view.findViewById(R.id.note_layout)
+    private val layout: View = view.findViewById(R.id.note_card)
     private val title: TextView = view.findViewById(R.id.note_title)
     private val description: TextView = view.findViewById(R.id.note_description)
 
@@ -26,7 +27,16 @@ class NotesRVViewHolder(view: View, listener: OnNoteClickListener): RecyclerView
 
         title.text = item.name
         description.text = item.description
-        layout.setBackgroundColor(Color.parseColor(item.color.hex))
+        setColor()
+    }
+
+    private fun setColor() {
+        val color = Color.parseColor(item.color.hex)
+        if (layout is CardView) {
+            layout.setCardBackgroundColor(color)
+        } else {
+            layout.setBackgroundColor(color)
+        }
     }
 }
 
